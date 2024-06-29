@@ -1,0 +1,14 @@
+def find_max_after_sorting(nums):
+    if not nums:
+        return None  # Return None for empty list
+    
+    sorted_nums = sorted(nums)  # Sorting the list
+    
+    # Return the maximum element in the sorted list
+    return sorted_nums[-1]
+
+print(find_max_after_sorting([]))         # Output: None or appropriate message (empty list)
+print(find_max_after_sorting([5]))        # Output: 5
+print(find_max_after_sorting([3, 3, 3, 3, 3]))  # Output: 3
+print(find_max_after_sorting([5, 2, 7, 1, 8]))  # Output: 8
+print(find_max_after_sorting([1, 2, 3, 4, 5]))  # Output: 5
