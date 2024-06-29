@@ -1,0 +1,34 @@
+def merge_sort(nums):
+    if len(nums) <= 1:
+        return nums
+    
+    mid = len(nums) // 2
+    left_half = nums[:mid]
+    right_half = nums[mid:]
+    
+    left_half_sorted = merge_sort(left_half)
+    right_half_sorted = merge_sort(right_half)
+    
+    sorted_nums = merge(left_half_sorted, right_half_sorted)
+    
+    return sorted_nums
+
+def merge(left, right):
+    merged = []
+    i = j = 0
+    
+    while i < len(left) and j < len(right):
+        if left[i] <= right[j]:
+            merged.append(left[i])
+            i += 1
+        else:
+            merged.append(right[j])
+            j += 1
+    
+    merged.extend(left[i:])
+    merged.extend(right[j:])
+    
+    return merged
+
+nums = [5, 2, 9, 1, 5, 6]
+print(merge_sort(nums))  # Output: [1, 2, 5, 5, 6, 9]
