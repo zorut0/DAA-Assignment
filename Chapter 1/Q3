@@ -1,0 +1,30 @@
+def sum_of_squares_of_distinct_counts(nums):
+    n = len(nums)
+    sum_of_squares = 0
+    freq = {}
+    
+    left = 0
+    for right in range(n):
+        if nums[right] in freq:
+            freq[nums[right]] += 1
+        else:
+            freq[nums[right]] = 1
+        
+        # Calculate distinct count for subarray nums[left..right]
+        distinct_count = len(freq)
+        sum_of_squares += distinct_count ** 2
+        
+        # Move left pointer to the right until the subarray has distinct elements
+        while left <= right and len(freq) < (right - left + 1):
+            freq[nums[left]] -= 1
+            if freq[nums[left]] == 0:
+                del freq[nums[left]]
+            left += 1
+    
+    return sum_of_squares
+
+nums1 = [1, 2, 1]
+print(sum_of_squares_of_distinct_counts(nums1))  # Output: 15
+
+nums2 = [1, 1]
+print(sum_of_squares_of_distinct_counts(nums2))  # Output: 3
